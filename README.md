@@ -17,8 +17,7 @@
 
 #include <iostream>
 
-int main()
-{
+int main() {
     std::cout << "Hello World!" << std::endl; 
     return 0;                       
 }
@@ -30,8 +29,7 @@ int main()
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     cout << "Hello World!" << endl;
     return 0;                      
 }
@@ -121,8 +119,7 @@ string s { "Hello" }; // string s = "Hello"와 동일합니다.
 #include <string>
 using namespace std;
 
-int main()
-{
+int main() {
     string s1 = "사과";
     string s2;
     
@@ -209,6 +206,21 @@ cout << f; // 실수 형식으로 f의 값이 출력됩니다.
 | a = a + 1 | a++ | a를 먼저 사용한 후 1을 더합니다. |
 |  | ++a | a에 1을 먼저 더한 후 사용합니다. |
 
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 5;
+    iny y = ++x; // x를 먼저 증가시키고 증가시킨 값을 y에 대입합니다.
+    // x+1이 된 6이 y에 저장되고, x 값이 6이 됩니다.
+    int z = x--; // x가 z에 대입되고 x 값이 감소합니다.
+    // x 값인 6이 z에 저장되고, x 값이 감소되어 5가 됩니다.
+    
+    return 0;
+}
+```
+
 ---
 
 ### Challenge
@@ -225,8 +237,7 @@ cout << f; // 실수 형식으로 f의 값이 출력됩니다.
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     int money;
     int candy_price;
     
@@ -258,8 +269,7 @@ int main()
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     double f_temp;
     double c_temp;
     
@@ -299,7 +309,7 @@ int main()
 | 논리 표현식 |  | 의미 |
 | --- | --- | --- |
 | x && y | AND 연산 | x와 y가 모두 참이면 참이며, 그렇지 않으면 거짓입니다. |
-| x \|\| y | OR 연산 | x나 y 중 하나만 참이면 참이며, 모두 거짓이면 거짓입니다. |
+| x || y | OR 연산 | x나 y 중 하나만 참이면 참이며, 모두 거짓이면 거짓입니다. |
 | !x | NOT 연산 | x가 참이면 거짓, 거짓이면 참입니다. |
 
 ---
@@ -309,22 +319,22 @@ int main()
 > *프로그램이 특정 조건에 따라 다른 동작을 수행하도록 하는 구조의 문장입니다.*
 > 
 
-**If-else**
+**if-else**
 
 > *주어진 조건이 참일 경우, 중괄호 안에 있는 문장을 실행합니다.*
 > 
 
 ```cpp
 if (조건식 1) {
-    문장 1
+		문장 1
 }
 
 else if (조건식 2) {
-    문장 2
+		문장 2
 }
 
 else {
-    문장 3
+		문장 3
 }
 ```
 
@@ -338,8 +348,7 @@ else {
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     int a, b, c, largest;
 
     cout << "3개의 정수를 입력하시오: ";
@@ -357,7 +366,7 @@ int main()
 }
 ```
 
-**Switch**
+**switch**
 
 > *케이스에 따라 다른 동작을 수행할 때 사용되는 제어구조입니다.*
 > 
@@ -366,14 +375,14 @@ int main()
 // break가 없으면, 참인 케이스 이후에 모든 케이스 블록이 실행됨
 
 switch (표현식) {
-    case 값 1:
-        문장 1;
-        break;
-    case 값 2:
-        문장 2;
-        break;
-    default;
-        문장 3;
+		case 값 1:
+			문장 1;
+			break;
+		case 값 2:
+			문장 2;
+			break;
+		default;
+			문장 3;
 }
 ```
 
@@ -383,8 +392,7 @@ switch (표현식) {
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     int choice;
 
     cout << "1. 파일 저장" << endl;
@@ -433,8 +441,7 @@ int main()
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     int choice;
 
     cout << "1. 파일 저장" << endl;
@@ -442,20 +449,20 @@ int main()
     cout << "3. 종료" << endl;
     cin >> choice;
 
-    switch (chice) {
-        case 1:
-            cout << "파일 저장을 선택했습니다." << endl;
-            break;
-        case 2:
-            cout << "파일 닫기를 선택했습니다." << endl;
-            break;
-        case 3:
-            cout << "프로그램을 종료합니다." << endl;
-            break;
-        default:
-            cout << "잘못된 선택입니다." << endl;
-            break;
-    }
+    switch (choice) {
+		    case 1:
+	        cout << "파일 저장을 선택했습니다." << endl;
+					break;
+				case 2:
+					cout << "파일 닫기를 선택했습니다." << endl;
+					break;
+				case 3:
+					cout << "프로그램을 종료합니다." << endl;
+					break;
+				default:
+					cout << "잘못된 선택입니다." << endl;
+					break;
+		}
 		
     return 0;
 }
@@ -468,8 +475,7 @@ int main()
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     int choice;
 
     cout << "1. 파일 저장" << endl;
@@ -503,15 +509,14 @@ int main()
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     int number;
     cout << "숫자를 입력하시오: ";
     cin >> number;
 
     if (number == 0) {
-        cout << "zero" << endl;
-    }
+		    cout << "zero" << endl;
+		}
     else if (number == 1) {
         cout << "one" << endl;
     }
@@ -529,8 +534,7 @@ int main()
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     int number;
     cout << "숫자를 입력하시오: ";
     cin >> number;
@@ -546,6 +550,459 @@ int main()
         cout << "many" << endl;
     }
     
+    return 0;
+}
+```
+
+---
+
+### Loop Statement
+
+**for 문**
+
+```cpp
+for (초기식; 조건식; 증감식) {
+	문장
+}
+```
+
+```cpp
+// i가 0부터 시작해 1씩 증가시키면서 5 미만일 때 까지 아래 문장을 반복하는 예시
+
+for (i = 0; i < 5; i++) {
+	cout << "Hello";
+}
+```
+
+1. 변수를 선언하고 초기화 합니다. 이는 한 번만 수행됩니다.
+2. 변수의 조건을 확인합니다.
+3. 조건에 해당하면 중괄호 내에 있는 문장을 수행합니다.
+4. 변수의 값을 증감한 후 다시 조건을 확인합니다.
+
+```cpp
+// 1부터 10까지의 정수를 더하여 합을 구하는 프로그램
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int sum = 0;
+    for (int i = 1; i <= 10; i++)
+	    sum += 1;
+	   cout << "1부터 10까지의 정수의 합: " << sum << endl;
+    
+    return 0;
+}
+```
+
+```cpp
+// 팩토리얼 값을 계산하는 프로그램
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    long fact = 1;
+    int n;
+
+    cout << "정수를 입력하시오: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++)
+        fact = fact * i;
+
+    cout << n << "!은 " << fact << "입니다." << endl;
+
+    return 0;
+}
+```
+
+**while 문**
+
+```cpp
+while (조건식) {
+	문장
+}
+```
+
+1. 조건식을 확인합니다.
+2. 조건식이 참이면 문장을 수행합니다.
+
+```cpp
+// 구구단
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    int i = 1;
+    
+    cout << "구구단 중에서 출력하고 싶은 단을 입력하시오: ";
+    cin >> n;
+    
+    while (i <= 9) {
+	    cout << n << " * " << i << " = " << n * i << endl;
+	    i++;
+	   }
+		return 0;
+}
+```
+
+**do-while 문**
+
+```cpp
+do {
+	문장
+}
+while (조건식);
+```
+
+1. 문장을 먼저 한 번 수행합니다.
+2. 조건식을 확인합니다.
+3. 조건식이 참이면 문장을 수행합니다.
+
+```cpp
+// 종료를 입력하기 전까지 입력을 그대로 출력하는 프로그램
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    string str;
+    do {
+	    cout << "문자열을 입력하시오: ";
+	    cin >> str;
+	    cout << "사용자의 입력: " << str << endl;
+	  }
+	  while (str != "종료");
+    
+		return 0;
+}
+```
+
+**break**
+
+```cpp
+// 4까지 출력하고 반복문을 즉각 종료하는 프로그램
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    for (int i = 1; i < 10; i++)
+    {
+	    cout << i << " ";
+	    if (i == 4)
+		    break;
+		}
+		return 0;
+}
+```
+
+**continue**
+
+```cpp
+// 다음 반복을 즉각 진행하여 continue를 출력하는 프로그램
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int i = 0;
+    do {
+	    i++;
+	    cout << "continue 문장 전에 있는 문장" << endl;
+	    continue;
+	    cout << "continue 문장 후에 있는 문장" << endl;
+	  }
+	  while (i < 3);
+	  return 0;
+}
+```
+
+**Comparison**
+
+|  | for |
+| --- | --- |
+| 구조 | 상단에서 확인 가능합니다. |
+| 장점 | 초기화, 조건 검사, 증감코드 명확 등의 장점이 있습니다. |
+| 단점 | 반복 횟수를 알아야만 합니다. |
+| 사용처 | 반복 횟수를 알고 있을 때 사용할 수 있습니다. |
+| 예 | 리스트 순회 |
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numbers[5] = {1, 2, 3, 4, 5};
+    
+    cout << "for문을 사용하여 리스트 순회: " << endl;
+    
+    for (int i = 0; i < 5; i++) {
+	    cout << numbers[i] << " ";
+	  }
+	  cout << endl;
+	  
+	  return 0;
+}
+```
+
+|  | while |
+| --- | --- |
+| 구조 | 상단에서 확인 가능합니다. |
+| 장점 | 초기화나 증감 코드가 필수가 아닙니다. |
+| 단점 | 조건 검사를 명확히 설정해야 합니다. |
+| 사용처 | 종료 조건이 불명확하거나, 무한 루프일 때 사용합니다. |
+| 예 | 사용자 입력 처리 |
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int userInput;
+    cout << "while문을 사용하여 사용자의 입력 처리: " << endl;
+    
+    cout << "정수를 입력하세요 (0을 입력하면 종료): ";
+    while (true) {
+	    cin >> userInput;
+	    
+	    if (userInput == 0) {
+		    break;
+		  }
+		  
+		  cout << "입력값: " << userInput << endl;
+		}
+		return 0;
+}
+```
+
+|  | do-while |
+| --- | --- |
+| 구조 | 상단에서 확인 가능합니다. |
+| 장점 | 최소 한 번의 실행을 보장합니다. |
+| 단점 | 불필요한 실행이 발생할 수 있습니다. |
+| 사용처 | 최소 한 번 실행 후 조건을 검사할 때 사용합니다. |
+| 예 | 메뉴 선택 |
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+	int choice;
+  cout << "do-while문을 사용하여 메뉴 선택: " << endl;
+    
+  do {
+		cout << "메뉴를 선택하세요 (1. 옵션 1, 2. 옵션 2, 3. 종료): ";
+	  cin >> choice;
+	    
+	  switch (choice) {
+		  case 1:
+			  cout << "옵션 1 선택" << endl;
+			  break;
+			case 2:
+				cout << "옵션 2 선택" << endl;
+				break;
+			case 3:
+				cout << "프로그램 종료" << endl;
+				break;
+			case 4:
+				cout << "잘못된 선택" << endl;
+				break;
+		}
+	} while (choice != 3);
+	return 0;
+}
+```
+
+**중첩문 Nested Statement**
+
+> *조건문 안에 조건문을 n번 겹치게 작성하는 문장입니다.*
+> 
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    cout << "구구단 출력: " << endl;
+
+    for (int i = 2; i <= 9; ++i)
+    {
+        cout << i << "단: " << endl;
+
+        for (int j = 1; j <= 9; ++j)
+        {
+            cout << i << " x " << j << " = " << (i + j) << endl;
+        }
+        cout << endl;
+    }
+    return 0;
+}
+```
+
+---
+
+### Challenge
+
+**[while → for] while로 구현된 아래 코드를 for문을 사용해 구현하세요.**
+
+```cpp
+// Problem
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int userInput;
+
+    cout << "정수를 10번 입력하세요 (0을 입력하면 종료): ";
+
+    while (true) {
+			  cin >> userInput;
+			  if (userInput == 0) {
+				  break;
+		}
+    cout << "입력값: " << userInput << " 횟수: " << i << endl;
+    
+    if (i == 10) {
+			break;
+		}
+        
+			}
+    cout << "종료되었습니다." << endl;
+
+    return 0;
+}
+```
+
+```cpp
+// Answer
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int userInput;
+
+    cout << "정수를 10번 입력하세요 (0을 입력하면 종료): ";
+
+    for (int i = 0; i < 10; i++) {
+        cin >> userInput;
+        if (userInput == 0) {
+            break;
+        }
+
+        cout << "입력값: " << userInput << " 횟수: " << i << endl;
+    }
+    cout << "종료되었습니다." << endl;
+
+    return 0;
+}
+```
+
+**[자음과 모음 개수 세기] 영문자를 입력받고, 영문자들의 자음과 모음의 개수를 세는 프로그램을 구현하세요.**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int vowel = 0;
+    int consonant = 0;
+    cout << "영문자를 입력하고 ctrl + z를 치세요" << endl;
+
+    char ch;
+
+    while (cin >> ch)
+    {
+        switch (ch)
+        {
+        case 'a':
+        case 'e':
+        case 'i':
+        case 'o':
+        case 'u':
+            vowel++;
+            break;
+        default:
+            consonant++;
+        }
+    }
+
+    cout << "모음: " << vowel << endl;
+    cout << "자음: " << consonant << endl;
+
+    return 0;
+}
+```
+
+**[숫자 맞추기 프로그램] 프로그램이 저장한 0부터 99사이의 정수를 사용자가 맞추는 프로그램을 구현하세요.**
+
+```cpp
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+int main(){
+    srand(time(NULL));
+
+    int answer = rand() % 100;
+    int tries = 0;
+
+    int guess;
+
+    do {
+        cout << "정답을 추측하여 보시오: ";
+        cin >> guess;
+        tries++;
+
+        if(guess > answer)
+        cout << "제시한 정수가 높습니다." <<endl;
+        if(guess < answer)
+        cout << "제시한 정수가 낮습니다." <<endl;
+    } while (guess != answer);
+
+    cout << "축하합니다. 시도 횟수= " <<tries << endl;
+    return 0;
+}
+```
+
+**[산수 문제 자동 출제] 프로그램이 보여주는 산수 문제를 푸는 프로그램을 구현하세요.**
+
+```cpp
+// 종료조건: 사용자가 정답을 맞출 때
+
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+int main(){
+    int i;
+    int ans;
+    cout << "산수 문제를 자동으로 출제합니다. " << endl;
+
+    while (true) {
+        int firstNum = rand() % 100;
+        int secondNum = rand() % 100;
+
+        cout << firstNum << " + " << secondNum << " = ";
+        cin >> ans;
+        
+        if (firstNum + secondNum == ans) {
+            cout << "맞았습니다." << endl;
+            break;
+        }
+        else {
+            cout << "틀렸습니다." << endl;
+        }
+
+    }
     return 0;
 }
 ```
