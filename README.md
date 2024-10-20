@@ -13,6 +13,8 @@
 - std: 표준 C++ 라이브러리의 네임스페이스입니다.
 
 ```cpp
+// ❌ using namespace std;
+
 #include <iostream>
 
 int main()
@@ -23,6 +25,8 @@ int main()
 ```
 
 ```cpp
+// ⭕️ using namespace std;
+
 #include <iostream>
 using namespace std;
 
@@ -69,6 +73,8 @@ int main()
         - ❌ int
 
 ```cpp
+// 변수 선언 예시
+
 int i; // 변수 i를 선언합니다.
 i = 100 // 변수 i에 100을 저장합니다.
 
@@ -109,6 +115,8 @@ string s { "Hello" }; // string s = "Hello"와 동일합니다.
 > 
 
 ```cpp
+// C++에서 + 연산자는 문자열끼리 더할 수 있지만, 문자열과 정수는 직접 더할 수 없음
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -135,6 +143,8 @@ int main()
 > 
 
 ```cpp
+// auto d = 1.0;
+
 #include <iostream>
 using namespace std;
 
@@ -201,9 +211,9 @@ cout << f; // 실수 형식으로 f의 값이 출력됩니다.
 
 ---
 
-## Challenge
+### Challenge
 
-### 최대한의 사탕 사기
+**최대한의 사탕 사기**
 
 > *철수가 가지고 있는 돈과 캔디의 가격을 입력 받아, 철수가 최대한 살 수 있는 사탕 개수와 나머지 돈을 계산하라.*
 > 
@@ -236,7 +246,7 @@ int main()
 }
 ```
 
-### 온도 변환
+**온도 변환**
 
 > *미국에서는 화씨 온도를 사용한다. 화씨 온도를 섭씨 온도로 바꾸는 프로그램을 작성하라.*
 > 
@@ -259,6 +269,282 @@ int main()
     c_temp = (5.0 / 9.0) * (f_temp - 32);
     
     cout << "섭씨온도: " << c_temp << endl;
+    
+    return 0;
+}
+```
+
+---
+
+### **제어문 Control Statement**
+
+> *프로그램의 실행 흐름을 조절하는 문장으로, 꼭 세미콜론으로 구분되진 않습니다.*
+> 
+
+**관계 연산자 Relational Operators**
+
+> *두 변수 사이에 관계를 나타내기 위한 연산자로, 참이면 1 거짓이면 0을 반환하며 >, ≥, <, ≤은 생략하였습니다.*
+> 
+
+| 비교 표현식 | 의미 |
+| --- | --- |
+| x == y | x와 y가 같은가? |
+| x != y | x와 y가 다른가? |
+
+**논리 연산자 Logical Operators**
+
+> *논리적인 조건을 판단하고 논리값을 조합하거나 변환하는 연산자입니다.*
+> 
+
+| 논리 표현식 |  | 의미 |
+| --- | --- | --- |
+| x && y | AND 연산 | x와 y가 모두 참이면 참이며, 그렇지 않으면 거짓입니다. |
+| x \|\| y | OR 연산 | x나 y 중 하나만 참이면 참이며, 모두 거짓이면 거짓입니다. |
+| !x | NOT 연산 | x가 참이면 거짓, 거짓이면 참입니다. |
+
+---
+
+### **조건문 Control Statement**
+
+> *프로그램이 특정 조건에 따라 다른 동작을 수행하도록 하는 구조의 문장입니다.*
+> 
+
+**If-else**
+
+> *주어진 조건이 참일 경우, 중괄호 안에 있는 문장을 실행합니다.*
+> 
+
+```cpp
+if (조건식 1) {
+    문장 1
+}
+
+else if (조건식 2) {
+    문장 2
+}
+
+else {
+    문장 3
+}
+```
+
+- if: 가장 첫 번째로 확인할 블록입니다.
+- else if: 상위 조건을 만족하지 않을 경우 확인할 블록입니다.
+- else: 조건을 모두 만족하지 않을 때 수행되는 블록입니다.
+
+```cpp
+// 3개의 정수를 입력 받고, 가장 큰 수를 출력하는 프로그램
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b, c, largest;
+
+    cout << "3개의 정수를 입력하시오: ";
+    cin >> a >> b >> c;
+
+    if (a >= b && a >= c)
+        largest = a;
+    else if (b >= a && b >= c)
+        largest = b;
+    else
+        largest = c;
+
+    cout << "가장 큰 정수는 " << largest << endl;
+    return 0;
+}
+```
+
+**Switch**
+
+> *케이스에 따라 다른 동작을 수행할 때 사용되는 제어구조입니다.*
+> 
+
+```cpp
+// break가 없으면, 참인 케이스 이후에 모든 케이스 블록이 실행됨
+
+switch (표현식) {
+    case 값 1:
+        문장 1;
+        break;
+    case 값 2:
+        문장 2;
+        break;
+    default;
+        문장 3;
+}
+```
+
+```cpp
+// 사용자에게 메뉴를 입력받아 실행 결과를 출력하는 프로그램
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int choice;
+
+    cout << "1. 파일 저장" << endl;
+    cout << "2. 저장 없이 닫기" << endl;
+    cout << "3. 종료" << endl;
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        cout << "파일 저장을 선택했습니다." << endl;
+        break;
+    case 2:
+        cout << "파일 닫기를 선택했습니다." << endl;
+        break;
+    case 3:
+        cout << "프로그램을 종료합니다." << endl;
+        break;
+    default:
+        cout << "잘못된 선택입니다." << endl;
+        break;
+    }
+
+    return 0;
+}
+```
+
+**Comparison**
+
+|  | if-else | switch |
+| --- | --- | --- |
+| 구조 | 상단에서 확인 가능합니다. | 상단에서 확인 가능합니다. |
+| 장점 | 더 복잡한 조건식 표현이 가능하며, 조건 범위나 자료형에 제약이 없습니다. | 조건 설정이 쉬워 코드 가독성이 높고, 조건식이 단순해 프로그램이 효율적입니다. |
+| 단점 | 조건식에 따라 프로그램 성능(속도)에 악영향을 미치며, switch 대비 가독성이 떨어집니다. | 제한된 데이터 유형으로 인해 조건식이 제한되어있고, break문의 실수 가능성이 높습니다. |
+| 사용처 | switch 문으로 처리가 어려운 경우 사용합니다. | 선택지에 대한 처리가 필요할 때 사용합니다. |
+
+---
+
+### Challenge
+
+**switch → if-else**
+
+```cpp
+// Problem
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int choice;
+
+    cout << "1. 파일 저장" << endl;
+    cout << "2. 저장 없이 닫기" << endl;
+    cout << "3. 종료" << endl;
+    cin >> choice;
+
+    switch (chice) {
+        case 1:
+            cout << "파일 저장을 선택했습니다." << endl;
+            break;
+        case 2:
+            cout << "파일 닫기를 선택했습니다." << endl;
+            break;
+        case 3:
+            cout << "프로그램을 종료합니다." << endl;
+            break;
+        default:
+            cout << "잘못된 선택입니다." << endl;
+            break;
+    }
+		
+    return 0;
+}
+
+```
+
+```cpp
+// Answer
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int choice;
+
+    cout << "1. 파일 저장" << endl;
+    cout << "2. 저장 없이 닫기" << endl;
+    cout << "3. 종료" << endl;
+    cin >> choice;
+
+    if (choice == 1) {
+        cout << "파일 저장을 선택했습니다." << endl;
+    }
+    else if (choice == 2) {
+        cout << "파일 닫기를 선택했습니다." << endl;
+    }
+    else if (choice == 3) {
+        cout << "프로그램을 종료합니다." << endl;
+    }
+    else {
+        cout << "잘못된 선택입니다." << endl;
+    }
+
+    return 0;
+}
+
+```
+
+**if-else → switch**
+
+```cpp
+// Problem
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int number;
+    cout << "숫자를 입력하시오: ";
+    cin >> number;
+
+    if (number == 0) {
+        cout << "zero" << endl;
+    }
+    else if (number == 1) {
+        cout << "one" << endl;
+    }
+    else {
+        cout << "many" << endl;
+    }
+    
+    return 0;
+}
+```
+
+```cpp
+// Answer
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int number;
+    cout << "숫자를 입력하시오: ";
+    cin >> number;
+
+    switch (number) {
+    case 0:
+        cout << "zero" << endl;
+        break;
+    case 1:
+        cout << "one" << endl;
+        break;
+    default:
+        cout << "many" << endl;
+    }
     
     return 0;
 }
