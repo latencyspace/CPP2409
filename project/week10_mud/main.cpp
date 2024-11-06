@@ -1,3 +1,7 @@
+// 1. int map[mapY][mapX] 대신 vector<vector<int>> map을 선언해 2차원 벡터를 사용함
+// 2. 2차원 배열 int map[mapY][mapX]을 const vector<vector<int>>& map 및 vector<vector<int>>& map으로 수정하였음
+// 3. const 키워드를 활용해 함수에서 map이 수정되지 않는 경우 상수 참조 ( const ) 로 전달함
+
 // "빌드가 완료되었지만, 오류가 발생했습니다." 에 대한 해결법
 // -> 새로운 터미널에서 아래 코드를 작성해서 직접 빌드하기
 // /usr/bin/g++ -std=c++14 -fdiagnostics-color=always -g /Users/latency/Desktop/Dev/C++/CPP2409/project/week10_mud/main.cpp /Users/latency/Desktop/Dev/C++/CPP2409/project/week10_mud/user.cpp -o /Users/latency/Desktop/Dev/C++/CPP2409/project/week10_mud/main
@@ -7,6 +11,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "user.h" // User 클래스 선언부 포함
 
 using namespace std;
@@ -16,14 +21,14 @@ const int mapY = 5;
 
 // 사용자 정의 함수
 bool checkXY(int user_x, int mapX, int user_y, int mapY);
-void displayMap(int map[][mapX], int user_x, int user_y);
-bool checkGoal(int map[][mapX], int user_x, int user_y);
-void checkState(int map[][mapX], User &user, int user_x, int user_y);
-bool CheckUser(User user); // HP가 0인지 확인하는 함수
+void displayMap(const vector<vector<int>> &map, int user_x, int user_y);
+bool checkGoal(const vector<vector<int>> &map, int user_x, int user_y);
+void checkState(vector<vector<int>> &map, User &user, int user_x, int user_y);
+bool CheckUser(const User &user); // HP가 0인지 확인하는 함수
 
 int main()
 {
-    int map[mapY][mapX] = {
+    vector<vector<int>> map = {
         {0, 1, 2, 0, 4},
         {1, 0, 0, 2, 0},
         {0, 0, 0, 0, 0},
@@ -111,7 +116,7 @@ int main()
     return 0;
 }
 
-void displayMap(int map[][mapX], int user_x, int user_y)
+void displayMap(const vector<vector<int>> &map, int user_x, int user_y)
 {
     for (int i = 0; i < mapY; i++)
     {
@@ -150,12 +155,12 @@ bool checkXY(int user_x, int mapX, int user_y, int mapY)
     return user_x >= 0 && user_x < mapX && user_y >= 0 && user_y < mapY;
 }
 
-bool checkGoal(int map[][mapX], int user_x, int user_y)
+bool checkGoal(const vector<vector<int>> &map, int user_x, int user_y)
 {
     return map[user_y][user_x] == 4;
 }
 
-void checkState(int map[][mapX], User &user, int user_x, int user_y)
+void checkState(vector<vector<int>> &map, User &user, int user_x, int user_y)
 {
     switch (map[user_y][user_x])
     {
@@ -182,7 +187,7 @@ void checkState(int map[][mapX], User &user, int user_x, int user_y)
     }
 }
 
-bool CheckUser(User user)
+bool CheckUser(const User &user)
 {
     return user.GetHP() > 0;
 }
