@@ -21,7 +21,7 @@ const int mapY = 5;
 
 // 사용자 정의 함수
 bool checkXY(int user_x, int mapX, int user_y, int mapY);
-void displayMap(const vector<vector<int>> &map, int user_x, int user_y);
+void displayMap(const vector<vector<int>> &map, int magician_x, int magician_y, int warrior_x, int warrior_y);
 bool checkGoal(const vector<vector<int>> &map, int user_x, int user_y);
 void checkState(vector<vector<int>> &map, User &user, int user_x, int user_y);
 bool CheckUser(const User &user); // HP가 0인지 확인하는 함수
@@ -35,8 +35,10 @@ int main()
         {0, 2, 3, 0, 0},
         {3, 0, 0, 0, 2}};
 
-    int user_x = 0;
-    int user_y = 0;
+    int magician_x = 0; // Magician의 초기 x 위치
+    int magician_y = 0; // Magician의 초기 y 위치
+    int warrior_x = 0;  // Warrior의 초기 x 위치
+    int warrior_y = 0;  // Warrior의 초기 y 위치
 
     Magician magician; // Magician 객체 생성
     Warrior warrior;   // Warrior 객체 생성
@@ -45,12 +47,19 @@ int main()
 
     while (true)
     {
-        cout << "현재 턴: " << (currentUser == &magician ? "마법사" : "전사") << endl; // 현재 턴 표시
+        cout << "현재 턴: " << (currentUser == &magician ? "Magician" : "Warrior") << endl; // 현재 턴 표시
         cout << "현재 HP: " << currentUser->GetHP() << endl;
         string user_input;
 
         cout << "명령어를 입력하세요 (상,하,좌,우,지도,정보,공격,종료): ";
         cin >> user_input;
+
+        // 현재 턴의 캐릭터만 행동 가능
+        if ((currentUser == &magician && user_input == "전사") || (currentUser == &warrior && user_input == "마법사"))
+        {
+            cout << "현재 턴이 아닙니다." << endl;
+            continue;
+        }
 
         if (user_input == "공격")
         {
@@ -59,7 +68,7 @@ int main()
         }
         else if (user_input == "지도")
         {
-            displayMap(map, user_x, user_y);
+            displayMap(map, magician_x, magician_y, warrior_x, warrior_y); // 두 캐릭터의 위치 표시
             continue;
         }
         else if (user_input == "정보")
@@ -72,31 +81,62 @@ int main()
             break;
         }
 
-        // 이동 처리
-        if (user_input == "상")
-            user_y--;
-        else if (user_input == "하")
-            user_y++;
-        else if (user_input == "좌")
-            user_x--;
-        else if (user_input == "우")
-            user_x++;
+        // 이동 처리 (현재 턴의 캐릭터만 이동)
+        if (currentUser == &magician)
+        {
+            if (user_input == "상")
+                magician_y--;
+            else if (user_input == "하")
+                magician_y++;
+            else if (user_input == "좌")
+                magician_x--;
+            else if (user_input == "우")
+                magician_x++;
+        }
+        else if (currentUser == &warrior)
+        {
+            if (user_input == "상")
+                warrior_y--;
+            else if (user_input == "하")
+                warrior_y++;
+            else if (user_input == "좌")
+                warrior_x--;
+            else if (user_input == "우")
+                warrior_x++;
+        }
 
-        if (!checkXY(user_x, mapX, user_y, mapY))
+        // 이동 범위 체크
+        if (!checkXY((currentUser == &magician) ? magician_x : warrior_x, mapX,
+                     (currentUser == &magician) ? magician_y : warrior_y, mapY))
         {
             cout << "맵을 벗어났습니다. 다시 돌아갑니다." << endl;
             // 이동 취소
-            if (user_input == "상")
-                user_y++;
-            else if (user_input == "하")
-                user_y--;
-            else if (user_input == "좌")
-                user_x++;
-            else if (user_input == "우")
-                user_x--;
+            if (currentUser == &magician)
+            {
+                if (user_input == "상")
+                    magician_y++;
+                else if (user_input == "하")
+                    magician_y--;
+                else if (user_input == "좌")
+                    magician_x++;
+                else if (user_input == "우")
+                    magician_x--;
+            }
+            else if (currentUser == &warrior)
+            {
+                if (user_input == "상")
+                    warrior_y++;
+                else if (user_input == "하")
+                    warrior_y--;
+                else if (user_input == "좌")
+                    warrior_x++;
+                else if (user_input == "우")
+                    warrior_x--;
+            }
             continue;
         }
 
+        // HP 감소 처리
         currentUser->DecreaseHP(1);
         if (!CheckUser(*currentUser)) // currentUser를 사용
         {
@@ -104,10 +144,13 @@ int main()
             break;
         }
 
-        displayMap(map, user_x, user_y);
-        checkState(map, *currentUser, user_x, user_y); // currentUser를 사용
+        // 지도 출력
+        displayMap(map, magician_x, magician_y, warrior_x, warrior_y); // 두 캐릭터의 위치에 맞춰 지도 출력
+        checkState(map, *currentUser, (currentUser == &magician) ? magician_x : warrior_x,
+                   (currentUser == &magician) ? magician_y : warrior_y); // 현재 캐릭터의 상태 체크
 
-        if (checkGoal(map, user_x, user_y))
+        if (checkGoal(map, (currentUser == &magician) ? magician_x : warrior_x,
+                      (currentUser == &magician) ? magician_y : warrior_y))
         {
             cout << "축하합니다!" << endl;
             break;
@@ -120,14 +163,25 @@ int main()
     return 0;
 }
 
-void displayMap(const vector<vector<int>> &map, int user_x, int user_y)
+void displayMap(const vector<vector<int>> &map, int magician_x, int magician_y, int warrior_x, int warrior_y)
 {
     for (int i = 0; i < mapY; i++)
     {
         for (int j = 0; j < mapX; j++)
         {
-            if (i == user_y && j == user_x)
-                cout << " USER |";
+            // 두 캐릭터가 같은 위치에 있을 때
+            if (i == magician_y && j == magician_x && i == warrior_y && j == warrior_x)
+            {
+                cout << "마/전 |"; // 두 캐릭터 모두 표시 (고정된 너비)
+            }
+            else if (i == magician_y && j == magician_x)
+            {
+                cout << "마법사|"; // Magician 표시
+            }
+            else if (i == warrior_y && j == warrior_x)
+            {
+                cout << " 전사 |"; // Warrior 표시 (고정된 너비)
+            }
             else
             {
                 switch (map[i][j])
