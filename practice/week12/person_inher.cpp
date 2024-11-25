@@ -35,7 +35,7 @@ public:
 int main()
 {
     Student obj;
-    obj.SetName("Jihwan");
+    obj.SetName("미수");
     obj.SetAddress("서울시 종로구 1번지");
     cout << obj.GetName() << endl;
     cout << obj.GetAddress() << endl;
